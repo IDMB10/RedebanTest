@@ -8,13 +8,13 @@ from .routes import bp
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(get_config())
+    app.config.from_object(get_config())  # Load configuration from config.py
 
 
     # DB
     engine = init_engine(app.config["SQLALCHEMY_DATABASE_URI"])
-    Base.metadata.create_all(bind=engine)
-    app.teardown_appcontext(remove_session)
+    Base.metadata.create_all(bind=engine)  # Create tables if they don't exist from the models in models.py
+    app.teardown_appcontext(remove_session)  # Close session after each request 
 
 
     # Routes
@@ -23,6 +23,6 @@ def create_app():
 
     @app.get("/health")
     def health_root():
-        return {"status": "ok"}, 200
+        return {"status": "ok from root"}, 200
 
     return app

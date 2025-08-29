@@ -8,7 +8,7 @@ def infer_type(value):
         return None
     if isinstance(value, bool):
         return ValueType.boolean
-    if isinstance(value, (int, float)) and not isinstance(value, bool):
+    if isinstance(value, (int, float)) and not isinstance(value, bool):  # Because in Python, bool is subclass of int, could be 1 and 0
         return ValueType.number
     if isinstance(value, str):
         return ValueType.string
@@ -19,14 +19,14 @@ def infer_type(value):
     raise ValidationError("Unsupported value type")
 
 class ParameterInSchema(Schema):
-    name = fields.String(required=True)
-    value = fields.Raw(required=True, allow_none=True)
+    name = fields.String(required=True)  # Name of the parameter
+    value = fields.Raw(required=True, allow_none=True) # allow_none to accept null
     value_type = EnumField(ValueType, required=False, allow_none=True)
 
     @validates_schema
     def validate_and_fill_type(self, data, **_):
         v = data.get("value")
-        vt = data.get("value_type") or infer_type(v)
+        vt = data.get("value_type") or infer_type(v)  # Get the value type from Enum Class, infer if not provided
 
         # Si vt es None (caso value == None), no validamos contra Enum
         if vt is None:

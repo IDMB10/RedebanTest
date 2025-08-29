@@ -17,4 +17,4 @@ class Parameter(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False, unique=True) 
     value = Column(JSON, nullable=True)
-    value_type = Column(Enum(ValueType), nullable=False)
+    value_type = Column(Enum(ValueType), nullable=True)

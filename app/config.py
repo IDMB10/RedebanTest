@@ -2,15 +2,15 @@ import os
 
 class BaseConfig:
     SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite+pysqlite:///:memory:")
-    JSON_SORT_KEYS = False
+    JSON_SORT_KEYS = False  # To preserve the order of JSON responses
 
 
 class DevelopmentConfig(BaseConfig):
-    DEBUG = True
+    DEBUG = True   # Enable debug mode for development
 
 
 class TestingConfig(BaseConfig):
-    TESTING = True
+    TESTING = True  # Enable testing mode
     SQLALCHEMY_DATABASE_URI = "sqlite+pysqlite:///:memory:"
 
 

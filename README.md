@@ -19,3 +19,52 @@ GET    `/v1/parameters`
 GET    `/v1/parameters/{name}`
 PUT    `/v1/parameters/{name}`
 PATCH  `/v1/parameters/{name}`
+
+
+Objeto JSON
+
+{
+  "name": "THEME",
+  "value": { "bg": "dark", "accent": "blue" }
+}
+
+ARREGLO
+
+{
+  "name": "ALLOWED_IPS",
+  "value": ["10.0.0.1", "10.0.0.2"]
+}
+
+STRING
+
+{
+  "name": "WELCOME_MSG",
+  "value": "hola mundo"
+}
+
+BOOLEAN
+
+{
+  "name": "FEATURE_ENABLED",
+  "value": true
+}
+
+NUMERO
+
+{
+  "name": "MAX_RETRIES",
+  "value": 5
+}
+
+PATCH
+{
+  "value": 15
+}
+
+
+PUT
+{
+  "name": "MAX_RETRIES",
+  "value": 10,
+  "value_type": "number"
+}
